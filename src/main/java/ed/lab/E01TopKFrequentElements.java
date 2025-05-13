@@ -21,7 +21,6 @@ public class E01TopKFrequentElements {
         int[] result = new int[k];
         for (int i = 0; i < k && !heap.isEmpty(); i++) {
             result[i] = heap.poll();
-
         }
         return result;
     }
