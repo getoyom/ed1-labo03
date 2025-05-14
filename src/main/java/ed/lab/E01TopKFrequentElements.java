@@ -6,10 +6,18 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class E01TopKFrequentElements {
-    HashMap<Integer, Integer> map = new LinkedHashMap<>();
     public int[] topKFrequent(int[] nums, int k) {
-        add(nums);
-        Queue<Integer> heap = new PriorityQueue<>((a,b)->{return map.get(b) - map.get(a);});
+        HashMap<Integer, Integer> map = new LinkedHashMap<>();
+
+        for (int num : nums) {
+            if(map.containsKey(num)) {
+                map.put(num, map.get(num) + 1);
+            } else {
+                map.put(num, 1);
+            }
+        }
+
+        Queue<Integer> heap = new PriorityQueue<>((a,b)->map.get(a) - map.get(b));
         for(var entry: map.entrySet()) {
             heap.offer(entry.getKey());
 
@@ -19,19 +27,11 @@ public class E01TopKFrequentElements {
         }
 
         int[] result = new int[k];
-        for (int i = 0; i < k && !heap.isEmpty(); i++) {
-            result[i] = heap.poll();
+        int index = 0;
+        while(!heap.isEmpty()) {
+            result[index] = heap.poll();
+            index++;
         }
         return result;
-    }
-
-    private void add(int[] nums) {
-        for (int num : nums) {
-            if(map.containsKey(num)) {
-                map.put(num, map.get(num) + 1);
-            } else {
-                map.put(num, 1);
-            }
-        }
     }
 }
