@@ -14,12 +14,14 @@ class E01TopKFrequentElementsTest {
     void testTopKFrequent(String input, int k, String expected) {
         int[] nums = parseIntArray(input);
         int[] expectedArray = parseIntArray(expected);
+        Arrays.sort(expectedArray);
 
         Arrays.sort(expectedArray);
 
         var e01test = new E01TopKFrequentElements();
 
         int[] result = e01test.topKFrequent(nums, k);
+        Arrays.sort(result);
 
         Arrays.sort(result);
 
