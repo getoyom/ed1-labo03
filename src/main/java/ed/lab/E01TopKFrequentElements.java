@@ -16,7 +16,6 @@ public class E01TopKFrequentElements {
                 map.put(num, 1);
             }
         }
-
         Queue<Integer> heap = new PriorityQueue<>((a,b)->map.get(a) - map.get(b));
         for(var entry: map.entrySet()) {
             heap.offer(entry.getKey());
