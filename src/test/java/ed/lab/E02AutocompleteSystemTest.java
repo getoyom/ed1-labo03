@@ -23,9 +23,8 @@ class E02AutocompleteSystemTest {
                 .toArray(String[]::new);
 
 
-        int[] array = Arrays.stream(initialOperation.expected().split(","))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        int[] array = Arrays.stream(initialOperation.expected().trim().split(","))
+                .mapToInt(Integer::parseInt).toArray();
 
         var e02 = new E02AutocompleteSystem(initialSentences, array);
         previousOps.add(initialOperation);
